@@ -2,11 +2,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import React from 'react';
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 
-export default function Home({ products }) {
-  const product = products[0];
+export default function Product({ product }) {
+  console.log(product);
   return (
+
     <div className={styles.container}>
       <Head>
         <title>Swagful</title>
@@ -16,6 +17,7 @@ export default function Home({ products }) {
 
       <main className={styles.main}>
         <h1>{product.title}</h1>
+        {product.info.hasVariants && (
         <ul>
           {
           Object.keys(product.variantInfo).map((oneKey, i) => (
@@ -27,6 +29,20 @@ export default function Home({ products }) {
           ))
         }
         </ul>
+        )}
+        {!product.info.hasVariants && (
+        <ul>
+          {
+          Object.keys(product.variantInfo).map((oneKey, i) => (
+            <li key={i}>
+              $
+              {product.variantInfo[oneKey].price}
+            </li>
+          ))
+        }
+        </ul>
+        )}
+
         {documentToReactComponents(product.description.json)}
       </main>
 
@@ -79,9 +95,40 @@ export async function getVariantPricing(arrayVariantID) {
   return (dataShopify.data);
 }
 
-export async function getStaticProps() {
+async function getAllSlugs() {
+  const query = `{ productCollection {
+            items {
+                slug
+            }
+        }
+    }`;
+
+  const fetchOptionsCTFL = {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.CTFL_CDA}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ query }),
+  };
+  const fetchURLCTFL = `https://graphql.contentful.com/content/v1/spaces/${process.env.CTFL_SPACE_ID}`;
+
+  const dataCTFL = await fetch(fetchURLCTFL, fetchOptionsCTFL)
+    .then((response) => response.json());
+  return dataCTFL.data.productCollection.items.map(((item) => item.slug));
+}
+
+export async function getStaticPaths() {
+  const slugs = await getAllSlugs();
+  const paths = slugs.map((slug) => ({ params: { slug } }));
+  return {
+    paths,
+    fallback: false,
+  };
+}
+export async function getStaticProps({ params }) {
   const query = `{
-  productCollection {
+  productCollection(where:{slug:"${params.slug}"}) {
     items {
       title
       slug
@@ -113,7 +160,7 @@ export async function getStaticProps() {
     .then((response) => response.json());
 
   // eslint-disable-next-line prefer-const
-  let products = dataCTFL.data.productCollection.items;
+  const products = dataCTFL.data.productCollection.items;
 
   products.forEach(async (product, index) => {
     products[index].variantInfo = await getVariantPricing(product.shopify);
@@ -134,6 +181,6 @@ export async function getStaticProps() {
   };
 
   const fullData = await mergeShopifyWithContentfulData();
-
-  return { props: { products: fullData } };
+  const product = fullData[0];
+  return { props: { product } };
 }
