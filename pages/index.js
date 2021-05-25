@@ -4,7 +4,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import React from 'react';
 import styles from '../styles/Home.module.css';
 
-export default function Home({ products, prices }) {
+export default function Home({ products }) {
   const product = products[0];
   return (
     <div className={styles.container}>
@@ -48,13 +48,14 @@ export default function Home({ products, prices }) {
   );
 }
 
-export async function getVariantPricing(arrayVarientID) {
+export async function getVariantPricing(arrayVariantID) {
   let shopifyQuery = '{';
-  for (const varientID in arrayVarientID) {
-    shopifyQuery += `${arrayVarientID[varientID].replace('==', '')}: productVariant(id: "${arrayVarientID[varientID].replace('==', '')}") {title price}
-  `;
-  }
+  arrayVariantID.forEach((variantID) => {
+    const fixedVariantID = variantID.replace('==', '');
+    shopifyQuery += `${fixedVariantID}: productVariant(id: "${fixedVariantID}") {title price}`;
+  });
   shopifyQuery += '}';
+
   const fetchOptionsShopify = {
     method: 'POST',
     headers: {
@@ -110,12 +111,15 @@ export async function getStaticProps() {
     products[index].variantInfo = await getVariantPricing(product.shopify);
   });
 
-  const mergeShopifyWithContentfulData = async (_) => {
-    const promises = products.map(async (product) => product.variantInfo = await getVariantPricing(product.shopify));
-    return await Promise.all(promises);
+  const mergeShopifyWithContentfulData = async () => {
+    const promises = products.map(async (product) => {
+      product.variantInfo = await getVariantPricing(product.shopify);
+    });
+
+    return Promise.all(promises);
   };
 
-  const fullData = await mergeShopifyWithContentfulData();
+  await mergeShopifyWithContentfulData();
   console.log(products);
 
   return { props: { products } };
