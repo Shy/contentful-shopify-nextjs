@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React from "react";
+import MainLayout from "@layouts/main";
 
 export default function Home() {
   return (
@@ -10,16 +10,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        <h1>SWAGFUL</h1>
-      </main>
-
-      <footer>
-        Made on stream by
-        <a href="https://whitep4nth3r.com/">whitep4nth3r</a>
-        and
-        <a href="https://twitter.com/ShyRuparel">ShyRuparel</a>
-      </footer>
+      <MainLayout>
+        <h1>
+          Let's do featured products here and have a flag on the products in Contentful - or maybe
+          the flag is 'show on home page' or something
+        </h1>
+      </MainLayout>
     </>
   );
 }

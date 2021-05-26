@@ -5,5 +5,8 @@
 
 .header__title {
   font-size: 2rem;
+  display: block;
   text-align: center;
+  text-decoration: none;
+  color: var(--charcoal);
 }
