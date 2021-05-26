@@ -1,5 +1,5 @@
-import Head from 'next/head';
-import React from 'react';
+import Head from "next/head";
+import React from "react";
 
 export default function Home() {
   return (
@@ -10,25 +10,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
+      <main>
         <h1>SWAGFUL</h1>
       </main>
 
-      <footer className={styles.footer}>
+      <footer>
         Made on stream by
-        <a
-          href="https://whitep4nth3r.com/"
-        >
-          whitep4nth3r
-        </a>
+        <a href="https://whitep4nth3r.com/">whitep4nth3r</a>
         and
-        <a
-          href="https://twitter.com/ShyRuparel"
-        >
-          ShyRuparel
-        </a>
+        <a href="https://twitter.com/ShyRuparel">ShyRuparel</a>
       </footer>
     </>
   );
 }
-

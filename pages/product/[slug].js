@@ -1,37 +1,27 @@
 import Head from "next/head";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
+
 import React from "react";
 import ContentfulProducts from "@ctfl/Products";
+
+import Title from "@components/product/title";
+import Description from "@components/product/description";
+import Images from "@components/product/images";
+import Variants from "@components/product/variants";
 
 export default function Product({ product }) {
   return (
     <>
       <Head>
-        <title>Swagful</title>
+        <title>{product.title} | Swagful</title>
         <meta name="description" content="Our fun Swag Store" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1>{product.title}</h1>
-        {product.info.hasVariants && (
-          <ul>
-            {Object.keys(product.variantInfo).map((oneKey, i) => (
-              <li key={i}>
-                {product.variantInfo[oneKey].title}: ${product.variantInfo[oneKey].price}
-              </li>
-            ))}
-          </ul>
-        )}
-        {!product.info.hasVariants && (
-          <ul>
-            {Object.keys(product.variantInfo).map((oneKey, i) => (
-              <li key={i}>${product.variantInfo[oneKey].price}</li>
-            ))}
-          </ul>
-        )}
-
-        {documentToReactComponents(product.description.json)}
+        <Title title={product.title} />
+        <Variants variantData={product.variantData} hasVariants={product.hasVariants} />
+        <Images images={product.imagesCollection.items} />
+        <Description description={product.description} />
       </main>
     </>
   );
