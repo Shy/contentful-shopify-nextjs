@@ -1,13 +1,9 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import React from 'react';
-import styles from '../styles/Home.module.css';
 
-export default function Home({ products }) {
-  const product = products[0];
+export default function Home() {
   return (
-    <div className={styles.container}>
+    <>
       <Head>
         <title>Swagful</title>
         <meta name="description" content="Our fun Swag Store" />
@@ -15,19 +11,7 @@ export default function Home({ products }) {
       </Head>
 
       <main className={styles.main}>
-        <h1>{product.title}</h1>
-        <ul>
-          {
-          Object.keys(product.variantInfo).map((oneKey, i) => (
-            <li key={i}>
-              {product.variantInfo[oneKey].title}
-              : $
-              {product.variantInfo[oneKey].price}
-            </li>
-          ))
-        }
-        </ul>
-        {documentToReactComponents(product.description.json)}
+        <h1>SWAGFUL</h1>
       </main>
 
       <footer className={styles.footer}>
@@ -44,96 +28,7 @@ export default function Home({ products }) {
           ShyRuparel
         </a>
       </footer>
-    </div>
+    </>
   );
 }
 
-export async function getVariantPricing(arrayVariantID) {
-  let shopifyQuery = '{';
-  arrayVariantID.forEach((variantID) => {
-    const fixedVariantID = variantID.replace('==', '');
-    shopifyQuery += `${fixedVariantID}: productVariant(id: "${fixedVariantID}") {
-      title 
-      price 
-      availableForSale 
-      inventoryQuantity 
-      product { 
-        id 
-      }
-    }`;
-  });
-  shopifyQuery += '}';
-
-  const fetchOptionsShopify = {
-    method: 'POST',
-    headers: {
-      'X-Shopify-Access-Token': `${process.env.SHOPIFY_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ query: shopifyQuery }),
-  };
-  const fetchURLShopify = `https://${process.env.SHOPIFY_STORE_NAME}.myshopify.com/admin/api/graphql.json`;
-
-  const dataShopify = await fetch(fetchURLShopify, fetchOptionsShopify)
-    .then((response) => response.json());
-  return (dataShopify.data);
-}
-
-export async function getStaticProps() {
-  const query = `{
-  productCollection {
-    items {
-      title
-      slug
-      description{
-        json
-      }
-      shopify
-      imagesCollection {
-        items {
-          url
-        }
-      }
-    }
-  }
-}
-`;
-
-  const fetchOptionsCTFL = {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${process.env.CTFL_CDA}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ query }),
-  };
-  const fetchURLCTFL = `https://graphql.contentful.com/content/v1/spaces/${process.env.CTFL_SPACE_ID}`;
-
-  const dataCTFL = await fetch(fetchURLCTFL, fetchOptionsCTFL)
-    .then((response) => response.json());
-
-  // eslint-disable-next-line prefer-const
-  let products = dataCTFL.data.productCollection.items;
-
-  products.forEach(async (product, index) => {
-    products[index].variantInfo = await getVariantPricing(product.shopify);
-  });
-
-  const mergeShopifyWithContentfulData = async () => {
-    const promises = products.map(async (product) => {
-      const variantPricing = await getVariantPricing(product.shopify);
-      const hasVariants = product.shopify.length > 1;
-      return {
-        ...product,
-        variantInfo: variantPricing,
-        info: { hasVariants },
-      };
-    });
-
-    return Promise.all(promises);
-  };
-
-  const fullData = await mergeShopifyWithContentfulData();
-
-  return { props: { products: fullData } };
-}

@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@ctfl/*": ["lib/contentful/*"],
+      "@shopify/*": ["lib/shopify/*"],
+      "@layouts/*": ["layouts/*"],
+      "@styles/*": ["styles/*"],
+    }
+  }
+}
