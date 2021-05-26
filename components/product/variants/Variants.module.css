@@ -1,0 +1,20 @@
+.variants {
+  margin-top: 2rem;
+  margin-bottom: 4rem;
+  max-width: 768px;
+}
+
+.variants__list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 1rem;
+  padding: 0;
+}
+
+.variants__listItem {
+  padding: 1rem;
+  font-size: 1.2rem;
+  border: 0.125rem solid var(--charcoal);
+  border-radius: 1rem;
+}

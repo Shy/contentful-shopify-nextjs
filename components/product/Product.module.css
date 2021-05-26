@@ -2,12 +2,19 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  max-width: 1400px;
+  width: 100%;
 }
 
 @media screen and (min-width: 768px) {
   .product {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    column-gap: 4rem;
   }
+}
+
+.product__gallery {
+}
+
+.product__details {
 }

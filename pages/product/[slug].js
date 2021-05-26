@@ -5,7 +5,6 @@ import ContentfulProducts from "@ctfl/Products";
 
 import MainLayout from "@layouts/main";
 
-import Title from "@components/product/title";
 import Description from "@components/product/description";
 import Images from "@components/product/images";
 import Variants from "@components/product/variants";
@@ -23,11 +22,10 @@ export default function Product({ product }) {
 
       <MainLayout>
         <section className={Styles.product}>
-          <div>
-            <Images images={product.imagesCollection.items} />
+          <div className={Styles.product__gallery}>
+            <Images title={product.title} images={product.imagesCollection.items} />
           </div>
-          <div>
-            <Title title={product.title} />
+          <div className={Styles.product__details}>
             <Variants variantData={product.variantData} hasVariants={product.hasVariants} />
             <Description description={product.description} />
           </div>

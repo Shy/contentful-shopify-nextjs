@@ -1,6 +1,6 @@
-.title {
+.price {
   position: absolute;
-  top: 2rem;
+  top: 6rem;
   left: 2rem;
   z-index: 1;
   color: var(--white);
