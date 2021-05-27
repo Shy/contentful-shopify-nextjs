@@ -1,11 +1,4 @@
 .title {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  z-index: 1;
-  color: var(--white);
-  background-color: var(--blue);
-  padding: 1rem 2rem;
   font-weight: normal;
   font-family: var(--font-family-main);
   font-size: 1.4rem;

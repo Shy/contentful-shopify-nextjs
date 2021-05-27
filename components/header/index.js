@@ -7,6 +7,7 @@ export default function Header() {
       <Link href="/">
         <a className={Styles.header__title}>SWAGful</a>
       </Link>
+      CART
     </header>
   );
 }
