@@ -1,3 +1,42 @@
 .images {
   position: relative;
 }
+
+.images__imageContainer {
+  position: relative;
+  height: 40rem;
+  overflow: hidden;
+  background-color: var(--blue);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.images__visibleImage {
+  object-position: center;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.images__nav {
+  position: absolute;
+  height: 100%;
+  background-color: var(--black);
+  color: var(--white);
+  border-width: 0;
+  opacity: 0.5;
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.images__nav__prev {
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.images__nav__next {
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
