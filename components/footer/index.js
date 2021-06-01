@@ -1,20 +1,54 @@
 import Styles from "./Footer.module.css";
+import Link from "next/link";
+import Logo from "@svg/logo";
 
 export default function Footer() {
   const date = new Date();
 
   return (
     <footer className={Styles.footer}>
-      <p className={Styles.footer__copyright}>
-        &copy; SWAGful {date.getFullYear()} | Made on stream by{" "}
-        <a href="https://whitep4nth3r.com/" target="_blank" rel="nofollow noopener">
-          whitep4nth3r
-        </a>{" "}
-        and{" "}
-        <a href="https://twitter.com/ShyRuparel" target="_blank" rel="nofollow noopener">
-          ShyRuparel
-        </a>
-      </p>
+      <div className={Styles.footer__links}>
+        <Link href="/">
+          <a className={Styles.footer__links__logo}>
+            <Logo />
+          </a>
+        </Link>
+        <ul className={Styles.footer__linkList}>
+          <li className={Styles.footer__linkListItem}>
+            <Link href="/">
+              <a className={Styles.footer__linkListItemLink}>Misc</a>
+            </Link>
+          </li>
+          <li className={Styles.footer__linkListItem}>
+            <Link href="/">
+              <a className={Styles.footer__linkListItemLink}>Footer</a>
+            </Link>
+          </li>
+          <li className={Styles.footer__linkListItem}>
+            <Link href="/">
+              <a className={Styles.footer__linkListItemLink}>Links</a>
+            </Link>
+          </li>
+        </ul>
+        <ul className={Styles.footer__linkList}>
+          <li className={Styles.footer__linkListItem}>
+            <Link href="/">
+              <a className={Styles.footer__linkListItemLink}>Misc</a>
+            </Link>
+          </li>
+          <li className={Styles.footer__linkListItem}>
+            <Link href="/">
+              <a className={Styles.footer__linkListItemLink}>Footer</a>
+            </Link>
+          </li>
+          <li className={Styles.footer__linkListItem}>
+            <Link href="/">
+              <a className={Styles.footer__linkListItemLink}>Links</a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+      <p className={Styles.footer__copyright}>&copy; swagful {date.getFullYear()}</p>
     </footer>
   );
 }

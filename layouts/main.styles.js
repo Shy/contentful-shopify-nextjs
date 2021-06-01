@@ -2,11 +2,10 @@ import css from "styled-jsx/css";
 
 export default css.global`
   :root {
-    --blue #02548c;
-    --charcoal: #404953;
+    --black: #000000;
     --white: #ffffff;
-    --font-family-main: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell,
-    Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    --font-family-main: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
+      Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
 
   html {

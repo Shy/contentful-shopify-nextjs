@@ -1,12 +1,19 @@
 .header {
-  padding: 1rem;
-  margin-bottom: 2rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--black);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.header__title {
-  font-size: 2rem;
+.header__logo {
+  height: 2rem;
+  width: 2rem;
   display: block;
-  text-align: center;
-  text-decoration: none;
-  color: var(--charcoal);
+}
+
+.header__bag {
+  width: 2rem;
+  display: block;
 }

@@ -1,10 +1,6 @@
-import Head from "next/head";
-
-import React from "react";
+import PageMeta from "@components/page_meta";
 import ContentfulProducts from "@ctfl/Products";
-
 import MainLayout from "@layouts/main";
-
 import Description from "@components/product/description";
 import Images from "@components/product/images";
 import Variants from "@components/product/variants";
@@ -16,11 +12,11 @@ import Styles from "@components/product/Product.module.css";
 export default function Product({ product }) {
   return (
     <>
-      <Head>
-        <title>{product.title} | Swagful</title>
-        <meta name="description" content="Our fun Swag Store" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <PageMeta
+        title={product.title}
+        description={product.seoDescription}
+        url={`/product/${product.slug}`}
+      />
 
       <MainLayout>
         <section className={Styles.product}>

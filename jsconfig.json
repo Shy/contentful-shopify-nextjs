@@ -7,6 +7,7 @@
       "@shopify/*": ["lib/shopify/*"],
       "@layouts/*": ["layouts/*"],
       "@styles/*": ["styles/*"],
+      "@svg/*": ["components/common/svg/*"]
     }
   }
 }
