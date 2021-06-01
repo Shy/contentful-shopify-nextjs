@@ -14,7 +14,7 @@ export default function Home({ productSlugs }) {
         </h1>
         <p>current products available for easy links</p>
         {productSlugs.map((slug) => (
-          <Link href={`/product/${slug}`}>
+          <Link href={`/product/${slug}`} key={slug}>
             <a style={{ display: "block", marginBottom: "2rem" }}>{slug}</a>
           </Link>
         ))}

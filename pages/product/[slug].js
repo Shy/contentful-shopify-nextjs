@@ -25,6 +25,7 @@ export default function Product({ product }) {
           </div>
           <div className={Styles.product__details}>
             <Title title={product.title} />
+            <p>{product.category.name}</p>
             {/* <p>
               To do - dynamic price based on selected variant - I really think it would be easier to
               statically generate all variant slugs - this way, each variant button could just be a
