@@ -12,11 +12,7 @@ export default function Header() {
         </a>
       </Link>
       <Link href="/">
-        <a
-          className={Styles.header__bag}
-
-          aria-label="Go to shopping bag"
-        >
+        <a className={Styles.header__bag} aria-label="Go to shopping bag">
           <Bag />
         </a>
       </Link>

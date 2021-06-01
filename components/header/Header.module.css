@@ -5,15 +5,28 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-bottom: 0.25rem solid var(--blue);
 }
 
 .header__logo {
   height: 2rem;
   width: 2rem;
   display: block;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.header__logo:focus {
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
 }
 
 .header__bag {
   width: 2rem;
   display: block;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.header__bag:focus {
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
 }

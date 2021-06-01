@@ -5,7 +5,7 @@
   width: 100%;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1080px) {
   .product {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -14,6 +14,9 @@
 }
 
 .product__gallery {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product__details {

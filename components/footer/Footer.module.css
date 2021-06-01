@@ -1,6 +1,7 @@
 .footer {
   padding: 2rem 1rem;
   background-color: var(--black);
+  border-top: 0.25rem solid var(--blue);
 }
 
 .footer__copyright {

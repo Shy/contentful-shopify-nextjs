@@ -1,16 +1,46 @@
 .images {
   position: relative;
+  height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+.images__slider {
+  height: 100%;
+}
+
+.images__slide {
+  height: auto;
+  width: 100%;
+  max-height: 100%;
+  object-fit: cover;
 }
 
 .images__imageContainer {
+  width: 100%;
+}
+
+.images__imageContainer > div {
+  height: 100%;
+}
+/* 
+.images__imageContainer {
   position: relative;
-  height: 40rem;
   overflow: hidden;
   background-color: var(--blue);
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 20rem;
+  border-bottom: 0.25rem solid var(--blue);
 }
+
+@media screen and (min-width: 768px) {
+  .images__imageContainer {
+    min-height: 40rem;
+    border-bottom-width: 0;
+  }
+} */
 
 .images__visibleImage {
   object-position: center;
@@ -20,23 +50,69 @@
 
 .images__nav {
   position: absolute;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: var(--black);
   color: var(--white);
   border-width: 0;
+  border-radius: 50%;
+  height: 4rem;
+  width: 4rem;
   opacity: 0.5;
-  padding: 1rem;
+  transition: all 0.1s ease-in-out;
+  z-index: 1;
+  top: 50%;
   cursor: pointer;
+  box-shadow: inset var(--white) 0 0 0 0.25rem;
+}
+
+.images__nav:focus {
+  outline: none;
+  opacity: 0.8;
+  box-shadow: inset var(--blue) 0 0 0 0.25rem;
+}
+
+.images__nav:hover {
+  opacity: 0.8;
 }
 
 .images__nav__prev {
-  left: 0;
-  top: 0;
-  z-index: 1;
+  left: 1rem;
 }
 
 .images__nav__next {
-  right: 0;
-  top: 0;
-  z-index: 1;
+  right: 1rem;
+}
+
+.images__nav__svg {
+  height: 1.2rem;
+  width: 1.2rem;
+  display: flex;
+}
+
+.images__indicatorContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  right: 50%;
+}
+
+.images__indicator {
+  width: 1rem;
+  height: 1rem;
+  padding: 1rem;
+  border-radius: 50%;
+  background-color: var(white);
+  border: 0.25rem solid var(--black);
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+.images__indicator__active {
+  background-color: var(--blue);
 }
