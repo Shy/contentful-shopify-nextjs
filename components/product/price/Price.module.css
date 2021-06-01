@@ -1,5 +1,6 @@
 .price {
-  font-weight: normal;
   font-family: var(--font-family-main);
-  font-size: 1.4rem;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
 }

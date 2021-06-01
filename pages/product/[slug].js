@@ -25,12 +25,12 @@ export default function Product({ product }) {
           </div>
           <div className={Styles.product__details}>
             <Title title={product.title} />
-            <p>
+            {/* <p>
               To do - dynamic price based on selected variant - I really think it would be easier to
               statically generate all variant slugs - this way, each variant button could just be a
               link to a page rather than having to manage some kind of 'selected' state
             </p>
-            <p>eg /product/contentful-front-logo-t-shirt/sm</p>
+            <p>eg /product/contentful-front-logo-t-shirt/sm</p> */}
             <Price price="$100.00" />
             <Variants variantData={product.variantData} hasVariants={product.hasVariants} />
             <AddToCartButton />

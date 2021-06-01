@@ -1,3 +1,24 @@
 .addToCart {
   margin-bottom: 2rem;
+  background-color: var(--black);
+  border: 0.125rem solid var(--black);
+  color: var(--white);
+  font-weight: bold;
+  font-family: var(--font-family-main);
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.125rem;
+  padding: 1rem 4rem;
+  border-radius: 1rem;
+  transition: all 0.1s ease-in-out;
+  cursor: pointer;
+}
+
+.addToCart:focus,
+.addToCart:hover,
+.addToCart:active {
+  background-color: var(--white);
+  color: var(--black);
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
 }

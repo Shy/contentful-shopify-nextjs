@@ -9,7 +9,7 @@
   .product {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: 4rem;
+    column-gap: 2rem;
   }
 }
 
@@ -17,4 +17,6 @@
 }
 
 .product__details {
+  margin-top: 2rem;
+  padding: 2rem;
 }

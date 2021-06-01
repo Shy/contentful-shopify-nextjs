@@ -4,6 +4,7 @@ export default css.global`
   :root {
     --black: #000000;
     --white: #ffffff;
+    --blue: #0984e3;
     --font-family-main: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu,
       Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
