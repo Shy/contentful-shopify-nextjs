@@ -2,6 +2,7 @@ import PageMeta from "@components/page_meta";
 import MainLayout from "@layouts/main";
 import Link from "next/link";
 import ContentfulProducts from "@ctfl/Products";
+import ShopifyApi from "@shopify/Api";
 
 export default function Home({ productSlugs }) {
   return (
@@ -25,6 +26,8 @@ export default function Home({ productSlugs }) {
 
 export async function getStaticProps() {
   const productSlugs = await ContentfulProducts.getAllSlugs();
+
+  const test = await ShopifyApi.createCheckout();
 
   return {
     props: {
