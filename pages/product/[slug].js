@@ -8,6 +8,7 @@ import Title from "@components/product/title";
 import Price from "@components/product/price";
 import AddToCartButton from "@components/product/addtocartbutton";
 import Styles from "@components/product/Product.module.css";
+import ShopifyApi from "@shopify/Api";
 
 export default function Product({ product }) {
   return (
@@ -33,7 +34,10 @@ export default function Product({ product }) {
             </p>
             <p>eg /product/contentful-front-logo-t-shirt/sm</p> */}
             <Price price="$100.00" />
-            <Variants variantData={product.variantData} hasVariants={product.hasVariants} />
+            <Variants
+              variantData={product.variantData}
+              hasVariants={product.hasVariants}
+            />
             <AddToCartButton />
             <Description description={product.description} />
           </div>
@@ -45,7 +49,6 @@ export default function Product({ product }) {
 
 export async function getStaticPaths() {
   const slugs = await ContentfulProducts.getAllSlugs();
-
   const paths = slugs.map((slug) => ({ params: { slug } }));
   return {
     paths,
