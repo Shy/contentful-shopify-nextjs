@@ -7,11 +7,15 @@ import ShopifyApi from "@shopify/Api";
 export default function Home({ productSlugs }) {
   return (
     <>
-      <PageMeta title="Home" description="Only the best swag from swagful." url="/" />
+      <PageMeta
+        title="Home"
+        description="Only the best swag from swagful."
+        url="/"
+      />
       <MainLayout>
         <h1>
-          Let's do featured products here and have a flag on the products in Contentful - or maybe
-          the flag is 'show on home page' or something
+          Let's do featured products here and have a flag on the products in
+          Contentful - or maybe the flag is 'show on home page' or something
         </h1>
         <p>current products available for easy links</p>
         {productSlugs.map((slug) => (
@@ -26,9 +30,6 @@ export default function Home({ productSlugs }) {
 
 export async function getStaticProps() {
   const productSlugs = await ContentfulProducts.getAllSlugs();
-
-  const test = await ShopifyApi.createCheckout();
-
   return {
     props: {
       productSlugs,
