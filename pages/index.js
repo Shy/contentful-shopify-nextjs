@@ -7,22 +7,34 @@ import ShopifyApi from "@shopify/Api";
 export default function Home({ productSlugs }) {
   return (
     <>
-      <PageMeta
-        title="Home"
-        description="Only the best swag from swagful."
-        url="/"
-      />
+      <PageMeta title="Home" description="Only the best swag from swagful." url="/" />
       <MainLayout>
         <h1>
-          Let's do featured products here and have a flag on the products in
-          Contentful - or maybe the flag is 'show on home page' or something
+          Let's do featured products here and have a flag on the products in Contentful - or maybe
+          the flag is 'show on home page' or something
         </h1>
         <p>current products available for easy links</p>
-        {productSlugs.map((slug) => (
-          <Link href={`/product/${slug}`} key={slug}>
-            <a style={{ display: "block", marginBottom: "2rem" }}>{slug}</a>
-          </Link>
-        ))}
+        {productSlugs.map((slug) => {
+          const returnThings = [];
+
+          if (slug.length === 1) {
+            returnThings.push(
+              <Link href={`/product/${slug[0]}`} key={slug[0]}>
+                <a style={{ display: "block", marginBottom: "2rem" }}>{slug[0]}</a>
+              </Link>,
+            );
+          } else {
+            returnThings.push(
+              <Link href={`/product/${slug[0]}/${slug[1]}`} key={`${slug[0]}-${slug[1]}`}>
+                <a style={{ display: "block", marginBottom: "2rem" }}>
+                  {slug[0]}/{slug[1]}
+                </a>
+              </Link>,
+            );
+          }
+
+          return returnThings;
+        })}
       </MainLayout>
     </>
   );

@@ -8,9 +8,8 @@ import Title from "@components/product/title";
 import Price from "@components/product/price";
 import AddToCartButton from "@components/product/addtocartbutton";
 import Styles from "@components/product/Product.module.css";
-import ShopifyApi from "@shopify/Api";
 
-export default function Product({ product }) {
+export default function Product({ product, selectedVariantId }) {
   return (
     <>
       <PageMeta
@@ -35,10 +34,11 @@ export default function Product({ product }) {
             <p>eg /product/contentful-front-logo-t-shirt/sm</p> */}
             <Price price="$100.00" />
             <Variants
+              productSlug={product.slug}
               variantData={product.variantData}
               hasVariants={product.hasVariants}
             />
-            <AddToCartButton />
+            <AddToCartButton selectedVariantId={selectedVariantId} />
             <Description description={product.description} />
           </div>
         </section>
@@ -57,6 +57,13 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const product = await ContentfulProducts.getBySlug(params.slug);
-  return { props: { product } };
+  const product = await ContentfulProducts.getBySlug(params.slug[0]);
+
+  const isVariant = params.slug.length > 1;
+
+  const selectedVariantId = isVariant
+    ? await ContentfulProducts.getVariantIdBySlugAndVariantName(params.slug[0], params.slug[1])
+    : product.shopify[0];
+
+  return { props: { product, selectedVariantId } };
 }

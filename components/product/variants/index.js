@@ -1,4 +1,5 @@
 import Styles from "./Variants.module.css";
+import Link from "next/link";
 
 /**
  * TODO: get currency info/symbol from Shopify rather than hard-coding $
@@ -12,7 +13,7 @@ import Styles from "./Variants.module.css";
  * because it doesn't make sense to be next to the 'sizes' etc
  */
 
-export default function Variants({ variantData, hasVariants }) {
+export default function Variants({ productSlug, variantData, hasVariants }) {
   return (
     <div className={Styles.variants}>
       <ul className={Styles.variants__list}>
@@ -22,7 +23,9 @@ export default function Variants({ variantData, hasVariants }) {
             : `$${variantData[key].price}`;
           return (
             <li className={Styles.variants__listItem} key={`${key}-${index}`}>
-              {variantDisplay}
+              <Link href={`/product/${productSlug}/${variantData[key].title.toLowerCase()}`}>
+                <a>{variantDisplay}</a>
+              </Link>
             </li>
           );
         })}
