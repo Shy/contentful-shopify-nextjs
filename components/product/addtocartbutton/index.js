@@ -3,9 +3,7 @@ import ShopifyApi from "@shopify/Api";
 
 export default function AddToCartButton({ selectedVariantId }) {
   async function addToCart() {
-    console.log(selectedVariantId);
     const uRL = await ShopifyApi.getCheckOutURL(selectedVariantId);
-    console.log(uRL);
   }
 
   return (

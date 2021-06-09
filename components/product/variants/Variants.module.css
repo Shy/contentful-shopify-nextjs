@@ -29,6 +29,7 @@
   text-decoration: none;
   color: var(--black);
   cursor: pointer;
+  font-weight: bold;
 }
 
 .variants__listItem:focus,

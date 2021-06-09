@@ -1,0 +1,36 @@
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.productGrid__product {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 20rem;
+}
+
+.productGrid__product img {
+  object-fit: cover !important;
+}
+
+@media screen and (min-width: 1080px) {
+  .productGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .productGrid__product {
+    height: 50rem;
+  }
+}
+
+.productGrid__productTitle {
+  position: absolute;
+  bottom: 0;
+  color: var(--white);
+  background: var(--black);
+  text-decoration: none;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
