@@ -15,7 +15,7 @@ export default function Footer({ categories }) {
         </Link>
         <ul className={Styles.footer__linkList}>
           {categories.map((category) => (
-            <li className={Styles.footer__linkListItem}>
+            <li key={category.slug} className={Styles.footer__linkListItem}>
               <Link href={`/collection/${category.slug}`}>
                 <a className={Styles.footer__linkListItemLink}>{category.name}</a>
               </Link>
