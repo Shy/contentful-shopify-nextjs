@@ -5,11 +5,17 @@ import Description from "@components/product/description";
 import Images from "@components/product/images";
 import Variants from "@components/product/variants";
 import Title from "@components/product/title";
+import Category from "@components/product/category";
 import Price from "@components/product/price";
 import AddToCartButton from "@components/product/addtocartbutton";
 import Styles from "@components/product/Product.module.css";
 
-export default function Product({ product, selectedVariantId }) {
+export default function Product({
+  product,
+  selectedVariantId,
+  selectedVariantIdKey,
+  selectedVariantPrice,
+}) {
   return (
     <>
       <PageMeta
@@ -25,18 +31,16 @@ export default function Product({ product, selectedVariantId }) {
           </div>
           <div className={Styles.product__details}>
             <Title title={product.title} />
-            <p>{product.category.name}</p>
-            {/* <p>
-              To do - dynamic price based on selected variant - I really think it would be easier to
-              statically generate all variant slugs - this way, each variant button could just be a
-              link to a page rather than having to manage some kind of 'selected' state
-            </p>
-            <p>eg /product/contentful-front-logo-t-shirt/sm</p> */}
-            <Price price="$100.00" />
+
+            <Category category={product.category} />
+
+            <Price price={selectedVariantPrice} />
+
             <Variants
               productSlug={product.slug}
               variantData={product.variantData}
               hasVariants={product.hasVariants}
+              selectedVariantIdKey={selectedVariantIdKey}
             />
             <AddToCartButton selectedVariantId={selectedVariantId} />
             <Description description={product.description} />
@@ -65,5 +69,9 @@ export async function getStaticProps({ params }) {
     ? await ContentfulProducts.getVariantIdBySlugAndVariantName(params.slug[0], params.slug[1])
     : product.shopify[0];
 
-  return { props: { product, selectedVariantId } };
+  const selectedVariantIdKey = selectedVariantId.replace("==", "");
+
+  const selectedVariantPrice = product.variantData[selectedVariantIdKey].price;
+
+  return { props: { product, selectedVariantId, selectedVariantIdKey, selectedVariantPrice } };
 }

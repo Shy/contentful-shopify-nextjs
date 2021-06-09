@@ -1,0 +1,14 @@
+.category {
+  color: var(--black);
+  text-decoration: underline;
+  text-underline-offset: 0.125rem;
+  text-decoration-thickness: 0.125rem;
+  margin-bottom: 2rem;
+  display: block;
+  cursor: pointer;
+}
+
+.category:focus {
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
+}

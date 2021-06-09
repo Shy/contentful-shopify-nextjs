@@ -13,18 +13,22 @@ import Link from "next/link";
  * because it doesn't make sense to be next to the 'sizes' etc
  */
 
-export default function Variants({ productSlug, variantData, hasVariants }) {
+export default function Variants({ productSlug, selectedVariantIdKey, variantData, hasVariants }) {
   return (
     <div className={Styles.variants}>
       <ul className={Styles.variants__list}>
         {Object.keys(variantData).map((key, index) => {
-          const variantDisplay = hasVariants
-            ? `${variantData[key].title}: ${variantData[key].price}`
-            : `$${variantData[key].price}`;
+          const isSelected = selectedVariantIdKey === key;
+
           return (
-            <li className={Styles.variants__listItem} key={`${key}-${index}`}>
+            <li key={`${key}-${index}`}>
               <Link href={`/product/${productSlug}/${variantData[key].title.toLowerCase()}`}>
-                <a>{variantDisplay}</a>
+                <a
+                  className={`${Styles.variants__listItem} ${
+                    isSelected ? Styles.variants__listItem__selected : ""
+                  }`}>
+                  {variantData[key].title}
+                </a>
               </Link>
             </li>
           );

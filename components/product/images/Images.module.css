@@ -23,25 +23,6 @@
 .images__imageContainer > div {
   height: 100%;
 }
-/* 
-.images__imageContainer {
-  position: relative;
-  overflow: hidden;
-  background-color: var(--blue);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 20rem;
-  border-bottom: 0.25rem solid var(--blue);
-}
-
-@media screen and (min-width: 768px) {
-  .images__imageContainer {
-    min-height: 40rem;
-    border-bottom-width: 0;
-  }
-} */
-
 .images__visibleImage {
   object-position: center;
   object-fit: cover;
@@ -111,6 +92,11 @@
   border: 0.25rem solid var(--black);
   margin: 0 0.5rem;
   cursor: pointer;
+}
+
+.images__indicator:focus {
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
 }
 
 .images__indicator__active {

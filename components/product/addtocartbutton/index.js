@@ -10,7 +10,7 @@ export default function AddToCartButton({ selectedVariantId }) {
 
   return (
     <button className={Styles.addToCart} onClick={addToCart}>
-      Add to cart {selectedVariantId}
+      Add to cart
     </button>
   );
 }
