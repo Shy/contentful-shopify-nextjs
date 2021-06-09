@@ -1,0 +1,13 @@
+.info {
+}
+
+.info__title {
+  font-size: 2rem;
+  color: var(--black);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.info__description {
+  margin-bottom: 4rem;
+}

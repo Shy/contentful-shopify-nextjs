@@ -4,6 +4,7 @@
     "paths": {
       "@components/*": ["components/*"],
       "@ctfl/*": ["lib/contentful/*"],
+      "@tools/*": ["lib/tools/*"],
       "@shopify/*": ["lib/shopify/*"],
       "@layouts/*": ["layouts/*"],
       "@styles/*": ["styles/*"],

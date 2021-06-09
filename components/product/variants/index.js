@@ -13,7 +13,7 @@ import Link from "next/link";
  * because it doesn't make sense to be next to the 'sizes' etc
  */
 
-export default function Variants({ productSlug, selectedVariantIdKey, variantData, hasVariants }) {
+export default function Variants({ productSlug, selectedVariantIdKey, variantData }) {
   return (
     <div className={Styles.variants}>
       <ul className={Styles.variants__list}>

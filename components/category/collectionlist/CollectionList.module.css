@@ -1,0 +1,34 @@
+.collectionList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 2rem;
+  margin: 2rem auto;
+}
+
+.collectionList__product {
+  border: 0.125rem solid var(--black);
+  text-decoration: none;
+  margin-bottom: 2rem;
+}
+
+.collectionList__product__imgContainer {
+  overflow: hidden;
+  height: 30rem;
+}
+
+.collectionList__product__details {
+  background-color: var(--black);
+  padding: 1rem;
+}
+
+.collectionList__product__title {
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.collectionList__product__price {
+  font-size: 2rem;
+  color: var(--white);
+  font-weight: bold;
+}

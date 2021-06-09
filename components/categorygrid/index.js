@@ -4,7 +4,7 @@ export default function CategoryGrid({ categories }) {
   return (
     <section>
       {categories.map((cat) => (
-        <Link href={`/collection/${cat.slug}`}>
+        <Link key={cat.slug} href={`/collection/${cat.slug}`}>
           <a>{cat.name}</a>
         </Link>
       ))}

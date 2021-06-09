@@ -36,12 +36,14 @@ export default function Product({
 
             <Price price={selectedVariantPrice} />
 
-            <Variants
-              productSlug={product.slug}
-              variantData={product.variantData}
-              hasVariants={product.hasVariants}
-              selectedVariantIdKey={selectedVariantIdKey}
-            />
+            {product.hasVariants && (
+              <Variants
+                productSlug={product.slug}
+                variantData={product.variantData}
+                selectedVariantIdKey={selectedVariantIdKey}
+              />
+            )}
+
             <AddToCartButton selectedVariantId={selectedVariantId} />
             <Description description={product.description} />
           </div>
