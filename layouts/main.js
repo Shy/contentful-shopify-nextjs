@@ -5,9 +5,9 @@ import Footer from "@components/footer";
 export default function MainLayout(props) {
   return (
     <>
-      <Header />
+      <Header categories={props.categories} />
       <main id="main_content">{props.children}</main>
-      <Footer />
+      <Footer categories={props.categories} />
 
       <style jsx global>
         {GlobalStyles}

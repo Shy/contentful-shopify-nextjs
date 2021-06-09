@@ -2,7 +2,7 @@ import Styles from "./Footer.module.css";
 import Link from "next/link";
 import Logo from "@svg/logo";
 
-export default function Footer() {
+export default function Footer({ categories }) {
   const date = new Date();
 
   return (
@@ -14,21 +14,13 @@ export default function Footer() {
           </a>
         </Link>
         <ul className={Styles.footer__linkList}>
-          <li className={Styles.footer__linkListItem}>
-            <Link href="/">
-              <a className={Styles.footer__linkListItemLink}>Misc</a>
-            </Link>
-          </li>
-          <li className={Styles.footer__linkListItem}>
-            <Link href="/">
-              <a className={Styles.footer__linkListItemLink}>Footer</a>
-            </Link>
-          </li>
-          <li className={Styles.footer__linkListItem}>
-            <Link href="/">
-              <a className={Styles.footer__linkListItemLink}>Links</a>
-            </Link>
-          </li>
+          {categories.map((category) => (
+            <li className={Styles.footer__linkListItem}>
+              <Link href={`/collection/${category.slug}`}>
+                <a className={Styles.footer__linkListItemLink}>{category.name}</a>
+              </Link>
+            </li>
+          ))}
         </ul>
         <ul className={Styles.footer__linkList}>
           <li className={Styles.footer__linkListItem}>

@@ -20,6 +20,12 @@
   width: 4rem;
   display: block;
   margin-bottom: 2rem;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.footer__links__logo:focus {
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
 }
 
 .footer__linkList {
@@ -38,12 +44,18 @@
   font-size: 1rem;
   display: block;
   width: 100%;
+  transition: box-shadow 0.1s ease-in-out;
 }
 
 .footer__linkListItemLink:hover {
   text-decoration: underline;
   text-decoration-thickness: 0.125rem;
   text-underline-offset: 0.25rem;
+}
+
+.footer__linkListItemLink:focus {
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
 }
 
 @media screen and (min-width: 768px) {

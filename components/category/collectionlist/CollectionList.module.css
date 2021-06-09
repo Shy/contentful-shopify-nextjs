@@ -9,6 +9,12 @@
   border: 0.125rem solid var(--black);
   text-decoration: none;
   margin-bottom: 2rem;
+  transition: box-shadow 0.1s ease-in-out;
+}
+
+.collectionList__product:focus {
+  outline: none;
+  box-shadow: var(--blue) 0 0 0 0.25rem;
 }
 
 .collectionList__product__imgContainer {
@@ -31,4 +37,8 @@
   font-size: 2rem;
   color: var(--white);
   font-weight: bold;
+}
+
+.collectionList__product__price__from {
+  font-size: 1rem;
 }

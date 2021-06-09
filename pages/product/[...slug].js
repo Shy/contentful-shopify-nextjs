@@ -1,5 +1,6 @@
 import PageMeta from "@components/page_meta";
 import ContentfulProducts from "@ctfl/Products";
+import ContentfulCategories from "@ctfl/Categories";
 import MainLayout from "@layouts/main";
 import Description from "@components/product/description";
 import Images from "@components/product/images";
@@ -15,6 +16,7 @@ export default function Product({
   selectedVariantId,
   selectedVariantIdKey,
   selectedVariantPrice,
+  categories,
 }) {
   return (
     <>
@@ -24,7 +26,7 @@ export default function Product({
         url={`/product/${product.slug}`}
       />
 
-      <MainLayout>
+      <MainLayout categories={categories}>
         <section className={Styles.product}>
           <div className={Styles.product__gallery}>
             <Images images={product.imagesCollection.items} />
@@ -75,5 +77,9 @@ export async function getStaticProps({ params }) {
 
   const selectedVariantPrice = product.variantData[selectedVariantIdKey].price;
 
-  return { props: { product, selectedVariantId, selectedVariantIdKey, selectedVariantPrice } };
+  const categories = await ContentfulCategories.getAll();
+
+  return {
+    props: { product, selectedVariantId, selectedVariantIdKey, selectedVariantPrice, categories },
+  };
 }

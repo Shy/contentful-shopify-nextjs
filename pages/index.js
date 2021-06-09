@@ -9,9 +9,9 @@ export default function Home({ products, categories }) {
   return (
     <>
       <PageMeta title="Home" description="Cool swag and accessories from swagful." url="/" />
-      <MainLayout>
+      <MainLayout categories={categories}>
         <ProductGrid products={products} />
-        <CategoryGrid categories={categories} />
+        {/* <CategoryGrid categories={categories} /> */}
       </MainLayout>
     </>
   );

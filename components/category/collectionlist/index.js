@@ -3,7 +3,6 @@ import Link from "next/link";
 import Styles from "./CollectionList.module.css";
 
 export default function CollectionList({ products }) {
-  console.log(products);
   return (
     <div className={Styles.collectionList}>
       {products.map((product) => (
@@ -20,7 +19,10 @@ export default function CollectionList({ products }) {
             </div>
             <div className={Styles.collectionList__product__details}>
               <h3 className={Styles.collectionList__product__title}>{product.title}</h3>
-              <p className={Styles.collectionList__product__price}>${product.defaultPrice}</p>
+              <p className={Styles.collectionList__product__price}>
+                <span className={Styles.collectionList__product__price__from}>from</span> $
+                {product.defaultPrice}
+              </p>
             </div>
           </a>
         </Link>

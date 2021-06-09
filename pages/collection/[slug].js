@@ -6,7 +6,7 @@ import CollectionList from "@components/category/collectionlist";
 import Info from "@components/category/info";
 import Styles from "@components/category/Category.module.css";
 
-export default function Collection({ products, category }) {
+export default function Collection({ products, category, categories }) {
   return (
     <>
       <PageMeta
@@ -15,7 +15,7 @@ export default function Collection({ products, category }) {
         url={`/collection/${category.slug}`}
       />
 
-      <MainLayout>
+      <MainLayout categories={categories}>
         <div className={Styles.category}>
           <Info category={category} />
           <CollectionList products={products} />
@@ -38,6 +38,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
   const category = await ContentfulCategories.getBySlug(params.slug);
   const products = await ContentfulProducts.getByCategory(params.slug);
+  const categories = await ContentfulCategories.getAll();
 
-  return { props: { products, category } };
+  return { props: { products, category, categories } };
 }
